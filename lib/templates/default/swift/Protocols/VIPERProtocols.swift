@@ -14,7 +14,7 @@ protocol VIPERViewProtocol: class {
 }
 
 protocol VIPERWireframeProtocol: class {
-    static weak var view: UIViewController? { get set }
+    static var view: UIViewController? { get set }
     static func presentVIPERModule(fromView view: UIViewController)
     /**
     * Add here your methods for communication PRESENTER -> WIREFRAME
