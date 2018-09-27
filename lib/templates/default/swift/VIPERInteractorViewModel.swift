@@ -5,6 +5,8 @@
 
 import Foundation
 
-class VIPERLocalDataManager: VIPERLocalDataManagerInputProtocol {
-    init() {}
+struct VIPERViewModel {
+    /**
+    *  Attributes here
+    */
 }

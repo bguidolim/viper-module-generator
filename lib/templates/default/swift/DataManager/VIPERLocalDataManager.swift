@@ -5,8 +5,6 @@
 
 import Foundation
 
-struct VIPERItem {
-    /**
-    *  Attributes here
-    */
+final class VIPERLocalDataManager: VIPERLocalDataManagerProtocol {
+    init() {}
 }

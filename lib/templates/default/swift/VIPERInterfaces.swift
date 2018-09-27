@@ -13,18 +13,18 @@ protocol VIPERViewProtocol: class {
     */
 }
 
-protocol VIPERWireframeProtocol: class {
+protocol VIPERRouterProtocol: class {
     static var view: UIViewController? { get set }
     static func presentVIPERModule(fromView view: UIViewController)
     /**
-    * Add here your methods for communication PRESENTER -> WIREFRAME
+    * Add here your methods for communication PRESENTER -> ROUTER
     */
 }
 
 protocol VIPERPresenterProtocol: class {
     var view: VIPERViewProtocol? { get set }
     var interactor: VIPERInteractorInputProtocol? { get set }
-    var wireFrame: VIPERWireframeProtocol? { get set }
+    var router: VIPERRouterProtocol? { get set }
     /**
     * Add here your methods for communication VIEW -> PRESENTER
     */
@@ -38,20 +38,20 @@ protocol VIPERInteractorOutputProtocol: class {
 
 protocol VIPERInteractorInputProtocol: class {
     var presenter: VIPERInteractorOutputProtocol? { get set }
-    var apiDataManager: VIPERAPIDataManagerInputProtocol? { get set }
-    var localDatamanager: VIPERLocalDataManagerInputProtocol? { get set }
+    var apiDataManager: VIPERAPIDataManagerProtocol? { get set }
+    var localDatamanager: VIPERLocalDataManagerProtocol? { get set }
     /**
     * Add here your methods for communication PRESENTER -> INTERACTOR
     */
 }
 
-protocol VIPERAPIDataManagerInputProtocol: class {
+protocol VIPERAPIDataManagerProtocol: class {
     /**
     * Add here your methods for communication INTERACTOR -> APIDATAMANAGER
     */
 }
 
-protocol VIPERLocalDataManagerInputProtocol: class {
+protocol VIPERLocalDataManagerProtocol: class {
     /**
     * Add here your methods for communication INTERACTOR -> LOCALDATAMANAGER
     */

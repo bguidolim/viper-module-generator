@@ -6,12 +6,12 @@
 import Foundation
 import UIKit
 
-class VIPERWireframe: VIPERWireframeProtocol {
+final class VIPERRouter: VIPERRouterProtocol {
 
     static weak var view: UIViewController?
 
     class func presentVIPERModule(fromView view: UIViewController) {
-        guard let newView = VIPERWireframe.configureViewController() else {
+        guard let newView = VIPERRouter.buildViewController() else {
             return
         }
         /**
@@ -19,25 +19,26 @@ class VIPERWireframe: VIPERWireframeProtocol {
          **/
     }
 
-    class func configureViewController() -> UIViewController? {
+    class func buildViewController() -> UIViewController? {
+
         // Generating module components
         let view: VIPERViewProtocol = VIPERView()
         let presenter: VIPERPresenterProtocol & VIPERInteractorOutputProtocol = VIPERPresenter()
         let interactor: VIPERInteractorInputProtocol = VIPERInteractor()
-        let apiDataManager: VIPERAPIDataManagerInputProtocol = VIPERAPIDataManager()
-        let localDataManager: VIPERLocalDataManagerInputProtocol = VIPERLocalDataManager()
-        let wireFrame: VIPERWireframeProtocol = VIPERWireframe()
+        let apiDataManager: VIPERAPIDataManagerProtocol = VIPERAPIDataManager()
+        let localDataManager: VIPERLocalDataManagerProtocol = VIPERLocalDataManager()
+        let router: VIPERRouterProtocol = VIPERRouter()
 
         // Connecting
         view.presenter = presenter
         presenter.view = view
-        presenter.wireFrame = wireFrame
+        presenter.router = router
         presenter.interactor = interactor
         interactor.presenter = presenter
         interactor.apiDataManager = apiDataManager
         interactor.localDatamanager = localDataManager
 
-        VIPERWireframe.view = view as? UIViewController
+        VIPERRouter.view = view as? UIViewController
 
         return view as? UIViewController
     }
